@@ -30,6 +30,7 @@ async function run() {
 
         const jobDatas = client.db("carrierBild").collection("workData");
         const bidDatas = client.db("carrierBild").collection("bidingData");
+        const allUsers = client.db("carrierBild").collection("users");
 
 
         app.get("/jobData", async (req, res) => {
@@ -45,6 +46,11 @@ async function run() {
         app.post("/bidingData", async(req, res) =>{
             const bidInfo = req.body;
             const result = await bidDatas.insertOne(bidInfo);
+            res.send(result);
+        })
+        app.post("/users", async(req, res) =>{
+            const userData = req.body;
+            const result = await allUsers.insertOne(userData);
             res.send(result);
         })
 
