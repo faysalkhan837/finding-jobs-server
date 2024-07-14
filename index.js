@@ -32,16 +32,16 @@ async function run() {
         const allUsers = client.db("carrierBild").collection("users");
 
 
-        app.get("/jobData", async (req, res) => {
-            console.log(req.query.email)
-            let query = {}
-            if (req.query?.email) {
-                query = { email: req.query.email }
-            }
-            console.log(query)
-            const result = await jobDatas.find(query).toArray();
-            res.send(result);
-        })
+        // app.get("/jobData", async (req, res) => {
+        //     console.log(req.query.email)
+        //     let query = {}
+        //     if (req.query?.email) {
+        //         query = { email: req.query.email }
+        //     }
+        //     console.log(query)
+        //     const result = await jobDatas.find(query).toArray();
+        //     res.send(result);
+        // })
         app.get("/jobData", async (req, res) => {
             const result = await jobDatas.find().toArray();
             res.send(result);
