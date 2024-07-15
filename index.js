@@ -52,6 +52,24 @@ async function run() {
             const result = await jobDatas.findOne(query);
             res.send(result);
         });
+        app.patch("/jobData/:id", async (req, res) =>{
+            const id = req.params.id;
+            const filter = {_id: new ObjectId(id)};
+            const data = req.body;
+            const updateData = {
+                $set:{
+                    job_title:data.job_title,
+                    deadline:data.deadline,
+                    maximum_price:data.maximum_price,
+                    minimum_price:data.minimum_price,
+                    short_details:data.short_details,
+                    name:data.name,
+                    category:data.category
+                }
+            }
+            const result = await jobDatas.updateOne(filter, updateData);
+            res.send(result);
+        })
         app.post("/jobData", async (req, res) => {
             const jobDetail = req.body;
             const result = await jobDatas.insertOne(jobDetail);
