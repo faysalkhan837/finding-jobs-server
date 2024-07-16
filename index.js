@@ -75,6 +75,12 @@ async function run() {
             const result = await jobDatas.insertOne(jobDetail);
             res.send(result);
         });
+        app.delete("/jobData/:id", async(req, res) =>{
+            const id = req.params.id;
+            const query = {_id: new ObjectId(id)};
+            const result = await jobDatas.deleteOne(query);
+            res.send(result);
+        })
 
         app.post("/bidingData", async (req, res) => {
             const bidInfo = req.body;
