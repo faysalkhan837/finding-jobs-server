@@ -81,6 +81,10 @@ async function run() {
             const result = await jobDatas.deleteOne(query);
             res.send(result);
         })
+        app.get("/bidingData", async (req, res) =>{
+            const result = await bidDatas.find().toArray();
+            res.send(result);
+        })
 
         app.post("/bidingData", async (req, res) => {
             const bidInfo = req.body;
