@@ -82,14 +82,16 @@ async function run() {
             res.send(result);
         })
         app.get("/bidingData", async (req, res) =>{
-            console.log(req.query?.email)
             let query = {}
             if (req.query?.email) {
                query = { biderEmail: req.query.email }
             }
-            console.log(query)
             const result = await bidDatas.find(query).toArray();
             res.send(result);
+        })
+        app.get("/bidingData", async (req, res) =>{
+           const result = await bidDatas.find().toArray();
+           res.send(result);
         })
 
         app.post("/bidingData", async (req, res) => {
