@@ -89,6 +89,20 @@ async function run() {
             const result = await bidDatas.find(query).toArray();
             res.send(result);
         })
+        app.put("/bidingData/:id", async(req, res) =>{
+            const id = req.params.id;
+            const filter = {_id: new ObjectId(id)}
+            const state = req.body;
+            console.log(state)
+            const option = {upsert:true}
+            const updateData = {
+                $set:{
+                    state: state.status
+                }
+            }
+            const result = await bidDatas.updateOne(filter, updateData, option)
+            res.send(result);
+        })
         app.get("/bidingData", async (req, res) =>{
            const result = await bidDatas.find().toArray();
            res.send(result);
