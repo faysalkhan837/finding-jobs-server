@@ -95,14 +95,14 @@ async function run() {
             const result = await bidDatas.updateOne(filter, updateData, option)
             res.send(result);
         })
-        app.get("/bidingData", async (req, res) =>{
-            let query = {}
-            if (req.query?.email) {
-               query = { biderEmail: req.query.email }
-            }
-            const result = await bidDatas.find(query).toArray();
-            res.send(result);
-        })
+        // app.get("/bidingData", async (req, res) =>{
+        //     let query = {}
+        //     if (req.query?.email) {
+        //        query = { biderEmail: req.query.email }
+        //     }
+        //     const result = await bidDatas.find(query).toArray();
+        //     res.send(result);
+        // })
         
         app.get("/bidingData", async (req, res) =>{
            const result = await bidDatas.find().toArray();
